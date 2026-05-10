@@ -1,6 +1,6 @@
 # ctclostio.github.io
 
-A public portfolio site for ctclostio's GitHub projects.
+A public portfolio site for Clayton Clostio / Hannadio's GitHub projects.
 
 ## Local development
 

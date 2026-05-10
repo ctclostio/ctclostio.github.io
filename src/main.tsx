@@ -1,12 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
-import { categories, featuredProjects, projects, type Project } from './data/projects';
+import { caseStudies, categories, featuredProjects, projects, type CaseStudy, type Project } from './data/projects';
 
 type Category = (typeof categories)[number];
 
 const githubUrl = 'https://github.com/ctclostio';
 const emailUrl = 'mailto:ctclostio@users.noreply.github.com';
+const photoPath = '/profile/clayton-clostio.jpg';
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(value));
@@ -14,6 +15,27 @@ function formatDate(value: string) {
 
 function languageClass(language?: string) {
   return `language-dot ${language?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'unknown'}`;
+}
+
+function ProfilePhoto() {
+  const [showPhoto, setShowPhoto] = useState(true);
+
+  return (
+    <div className="profile-photo" aria-label="Clayton Clostio profile photo slot">
+      {showPhoto ? (
+        <img
+          src={photoPath}
+          alt="Clayton Clostio"
+          onError={() => setShowPhoto(false)}
+        />
+      ) : (
+        <div className="profile-photo__placeholder">
+          <span>CC</span>
+          <small>Photo slot ready</small>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
@@ -35,9 +57,14 @@ function ProjectCard({ project, compact = false }: { project: Project; compact?:
           <i className={languageClass(project.language)} />
           {project.language || 'Mixed'}
         </span>
-        <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.name} on GitHub`}>
-          GitHub <span aria-hidden="true">↗</span>
-        </a>
+        <span className="project-links">
+          {project.caseStudySlug ? (
+            <a href={`#case-study-${project.caseStudySlug}`}>Case study</a>
+          ) : null}
+          <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.name} on GitHub`}>
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </span>
       </div>
     </article>
   );
@@ -49,6 +76,80 @@ function Stat({ value, label }: { value: string; label: string }) {
       <strong>{value}</strong>
       <span>{label}</span>
     </div>
+  );
+}
+
+function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
+  return (
+    <article className="case-study" id={`case-study-${caseStudy.slug}`}>
+      <div className="case-study__intro">
+        <span className="eyebrow">{caseStudy.kicker}</span>
+        <h3>{caseStudy.projectName}</h3>
+        <p>{caseStudy.summary}</p>
+        <div className="hero__actions compact-actions">
+          <a className="button secondary" href={caseStudy.repoUrl} target="_blank" rel="noreferrer">
+            Repository ↗
+          </a>
+          <a className="button secondary" href="#projects">
+            Back to index
+          </a>
+        </div>
+      </div>
+
+      <div className="case-study__meta">
+        <div>
+          <span>Role</span>
+          <p>{caseStudy.role}</p>
+        </div>
+        <div>
+          <span>Stack</span>
+          <div className="topic-row compact-topic-row">
+            {caseStudy.stack.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="case-study__body">
+        <section>
+          <h4>Problem</h4>
+          <p>{caseStudy.problem}</p>
+        </section>
+        <section>
+          <h4>Approach</h4>
+          <ul>
+            {caseStudy.approach.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h4>Implementation details</h4>
+          <ul>
+            {caseStudy.implementation.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h4>Outcomes</h4>
+          <ul>
+            {caseStudy.outcomes.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h4>Next steps</h4>
+          <ul>
+            {caseStudy.nextSteps.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </article>
   );
 }
 
@@ -74,14 +175,15 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="ctclostio portfolio home">
-          <span className="brand-mark">ct</span>
-          <span>ctclostio</span>
+        <a className="brand" href="#top" aria-label="Clayton Clostio portfolio home">
+          <span className="brand-mark">HC</span>
+          <span>Hannadio</span>
         </a>
         <nav aria-label="Primary navigation">
+          <a href="#about">About</a>
           <a href="#featured">Featured</a>
+          <a href="#case-studies">Case studies</a>
           <a href="#projects">Projects</a>
-          <a href="#focus">Focus</a>
           <a className="nav-cta" href={githubUrl} target="_blank" rel="noreferrer">
             GitHub
           </a>
@@ -92,31 +194,33 @@ function App() {
         <section className="hero section-shell">
           <div className="hero__copy">
             <div className="hero-pill">
-              <span className="pulse" /> Public portfolio · GitHub Projects
+              <span className="pulse" /> Clayton Clostio · Hannadio
             </div>
-            <h1>AI tools, simulations, games, and utilities shipped in public.</h1>
+            <h1>AI-native games, simulations, and utilities shipped in public.</h1>
             <p>
-              I build practical experiments across Python, Go, Rust, web apps, local AI workflows, and interactive systems — from LLM-powered dungeon crawlers to 3D astronomy tools.
+              I’m Clayton Clostio — Hannadio online — building practical experiments across Go, Python, Rust, local AI workflows, graphics, terminal tools, and interactive systems.
             </p>
             <div className="hero__actions">
-              <a className="button primary" href="#projects">Explore projects</a>
+              <a className="button primary" href="#case-studies">Read case studies</a>
               <a className="button secondary" href={githubUrl} target="_blank" rel="noreferrer">View GitHub ↗</a>
             </div>
           </div>
-          <div className="hero-console" aria-label="Project summary terminal card">
-            <div className="console-bar">
-              <span />
-              <span />
-              <span />
+
+          <aside className="profile-card" aria-label="Clayton Clostio profile summary">
+            <ProfilePhoto />
+            <div className="profile-card__copy">
+              <span className="eyebrow">Builder profile</span>
+              <h2>Clayton Clostio</h2>
+              <p>@Hannadio · GitHub: ctclostio</p>
             </div>
-            <code>$ gh repo list ctclostio --public</code>
-            <div className="console-grid">
+            <div className="profile-meta-grid">
               <Stat value={`${projects.length}`} label="curated repos" />
               <Stat value={`${languageCount}+`} label="languages" />
               <Stat value={`${aiProjects}`} label="AI projects" />
-              <Stat value="2026" label="active builds" />
+              <Stat value="2" label="case studies" />
             </div>
-          </div>
+            <code className="photo-note">Drop photo at public/profile/clayton-clostio.jpg</code>
+          </aside>
         </section>
 
         <section className="section-shell logo-strip" aria-label="Project domains">
@@ -125,7 +229,7 @@ function App() {
           ))}
         </section>
 
-        <section className="section-shell split" id="focus">
+        <section className="section-shell split" id="about">
           <div>
             <span className="eyebrow">Build focus</span>
             <h2>Curious systems with a practical edge.</h2>
@@ -155,6 +259,21 @@ function App() {
           <div className="featured-grid">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.name} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section className="section-shell case-study-section" id="case-studies">
+          <div className="section-heading">
+            <span className="eyebrow">Project case studies</span>
+            <h2>Deeper looks at the strongest portfolio pieces</h2>
+            <p>
+              Two projects now have story-driven breakdowns: what they are, what design problem they solve, how they are built, and where they can go next.
+            </p>
+          </div>
+          <div className="case-study-stack">
+            {caseStudies.map((caseStudy) => (
+              <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
             ))}
           </div>
         </section>
@@ -198,9 +317,9 @@ function App() {
         <section className="section-shell cta-panel">
           <div>
             <span className="eyebrow">Next up</span>
-            <h2>Keep the portfolio alive as projects evolve.</h2>
+            <h2>Add Clayton’s photo and keep the portfolio evolving.</h2>
             <p>
-              The site is structured so project cards can be refreshed from GitHub metadata, then redeployed through GitHub Pages.
+              The profile card is ready for a portrait image. Once the file is added, the deployed site will automatically swap the initials placeholder for the photo.
             </p>
           </div>
           <div className="hero__actions">
@@ -211,7 +330,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <span>© {new Date().getFullYear()} ctclostio</span>
+        <span>© {new Date().getFullYear()} Clayton Clostio · Hannadio</span>
         <span>Built with React, Vite, and GitHub Pages.</span>
       </footer>
     </>
