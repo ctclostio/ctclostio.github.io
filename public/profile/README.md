@@ -1,12 +1,12 @@
 # Profile photo slot
 
-When Clayton has a portrait ready, save it here as:
+A placeholder image is committed at:
 
 ```text
 public/profile/clayton-clostio.jpg
 ```
 
-The portfolio site already checks that path and will automatically replace the initials placeholder with the image after the file is committed and deployed.
+When Clayton has a portrait ready, replace that file with the real photo, commit it, and redeploy. The portfolio profile card reads this path directly.
 
 Recommended image:
 - Square crop
