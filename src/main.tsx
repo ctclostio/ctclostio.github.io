@@ -254,7 +254,6 @@ function App() {
           <div className="section-heading">
             <span className="eyebrow">Featured projects</span>
             <h2>Selected public work</h2>
-            <p>Representative projects chosen for technical variety, originality, and portfolio value.</p>
           </div>
           <div className="featured-grid">
             {featuredProjects.map((project) => (
@@ -267,9 +266,6 @@ function App() {
           <div className="section-heading">
             <span className="eyebrow">Project case studies</span>
             <h2>Deeper looks at the strongest portfolio pieces</h2>
-            <p>
-              Two projects now have story-driven breakdowns: what they are, what design problem they solve, how they are built, and where they can go next.
-            </p>
           </div>
           <div className="case-study-stack">
             {caseStudies.map((caseStudy) => (
