@@ -198,7 +198,7 @@ function App() {
             </div>
             <h1>AI-native games, simulations, and utilities shipped in public.</h1>
             <p>
-              I’m Clayton Clostio — Hannadio online — building practical experiments across Go, Python, Rust, local AI workflows, graphics, terminal tools, and interactive systems.
+              Hello! I am Clayton Clostio (Hannadio), an IT systems engineer and developer of many hobby projects, building practical experiments across Go, Python, Rust, local AI workflows, graphics, terminal tools, and interactive systems.
             </p>
             <div className="hero__actions">
               <a className="button primary" href="#case-studies">Read case studies</a>
@@ -232,7 +232,7 @@ function App() {
         <section className="section-shell split" id="about">
           <div>
             <span className="eyebrow">Build focus</span>
-            <h2>Curious systems with a practical edge.</h2>
+            <h2>Creative systems with a practical edge.</h2>
           </div>
           <div className="focus-grid">
             <div>
