@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Clayton Clostio portfolio preview</title>
+  <desc id="desc">Social preview for a portfolio of AI tools, games, simulations, and developer utilities.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08090a"/>
+      <stop offset="0.55" stop-color="#11131f"/>
+      <stop offset="1" stop-color="#07150f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#828fff"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="985" cy="112" r="220" fill="#7170ff" opacity="0.18"/>
+  <circle cx="154" cy="548" r="260" fill="#10b981" opacity="0.12"/>
+  <rect x="72" y="74" width="1056" height="482" rx="34" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.13)"/>
+  <rect x="112" y="116" width="86" height="86" rx="43" fill="url(#accent)"/>
+  <text x="155" y="171" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">HC</text>
+  <text x="112" y="272" fill="#f7f8f8" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="-3">
+    Clayton Clostio
+  </text>
+  <text x="112" y="344" fill="#d0d6e0" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="500" letter-spacing="-1.2">
+    AI tools, games, simulations, and utilities.
+  </text>
+  <g fill="none" stroke="url(#accent)" stroke-width="4" opacity="0.9">
+    <path d="M120 430h162"/>
+    <path d="M315 430h112"/>
+    <path d="M460 430h142"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600">
+    <text x="112" y="494" fill="#828fff">Case studies</text>
+    <text x="310" y="494" fill="#10b981">Public repos</text>
+    <text x="510" y="494" fill="#f7f8f8">Practical software</text>
+  </g>
+</svg>

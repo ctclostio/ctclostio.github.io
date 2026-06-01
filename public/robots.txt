@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ctclostio.github.io/sitemap.xml

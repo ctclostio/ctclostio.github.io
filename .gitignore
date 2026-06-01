@@ -6,3 +6,6 @@ dist
 !.env.example
 .vite
 *.local
+playwright-report
+test-results
+lighthouse-report.json

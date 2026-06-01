@@ -3,6 +3,7 @@ export type Project = {
   description: string;
   url: string;
   homepage?: string;
+  demoUrl?: string;
   language?: string;
   topics: string[];
   stars: number;
@@ -10,6 +11,8 @@ export type Project = {
   updatedAt: string;
   featured?: boolean;
   caseStudySlug?: string;
+  status?: string;
+  proofPoints?: string[];
   category: 'AI' | 'Games' | 'Simulation' | 'Utilities' | 'Web' | 'Learning';
 };
 
@@ -21,6 +24,7 @@ export type CaseStudy = {
   repoUrl: string;
   role: string;
   stack: string[];
+  proofPoints: string[];
   problem: string;
   approach: string[];
   implementation: string[];
@@ -39,6 +43,13 @@ export const projects: Project[] = [
     forks: 0,
     updatedAt: '2026-05-06T03:06:19Z',
     featured: true,
+    caseStudySlug: 'reaper',
+    status: 'Security automation prototype',
+    proofPoints: [
+      'Four-phase OWASP-oriented scan method',
+      '11 MCP pentesting tools exposed to the agent',
+      'Markdown reports with confirmed findings and remediation notes',
+    ],
     category: 'AI',
   },
   {
@@ -51,6 +62,12 @@ export const projects: Project[] = [
     forks: 0,
     updatedAt: '2026-05-06T03:05:08Z',
     featured: true,
+    status: 'Terminal game experiment',
+    proofPoints: [
+      'Rust CLI gameplay surface',
+      'Local LLM dungeon-master direction',
+      'Fallout-inspired RPG loop',
+    ],
     category: 'Games',
   },
   {
@@ -64,6 +81,12 @@ export const projects: Project[] = [
     updatedAt: '2026-05-06T03:05:01Z',
     featured: true,
     caseStudySlug: 'smoldungeon',
+    status: 'Case study published',
+    proofPoints: [
+      'Go CLI with scenario discovery and saves',
+      'YAML encounter data separated from engine code',
+      'Optional Fiber and SQLite DM infrastructure',
+    ],
     category: 'Games',
   },
   {
@@ -77,6 +100,12 @@ export const projects: Project[] = [
     updatedAt: '2026-05-06T03:48:53Z',
     featured: true,
     caseStudySlug: 'gostarmap',
+    status: 'Case study published',
+    proofPoints: [
+      'JPL orbital elements advanced through a Kepler solver',
+      'Custom GLSL lighting and raylib rendering',
+      'Procedural galaxy backdrop with culling and LOD',
+    ],
     category: 'Simulation',
   },
   {
@@ -89,6 +118,12 @@ export const projects: Project[] = [
     forks: 0,
     updatedAt: '2026-05-06T03:05:04Z',
     featured: true,
+    status: 'AI audio experiment',
+    proofPoints: [
+      'VibeVoice-based text-to-speech pipeline',
+      'Voice-cloning workflow exploration',
+      'Python tooling for local audio generation',
+    ],
     category: 'AI',
   },
   {
@@ -101,6 +136,12 @@ export const projects: Project[] = [
     forks: 0,
     updatedAt: '2026-05-06T03:05:07Z',
     featured: true,
+    status: '3D simulation experiment',
+    proofPoints: [
+      'Python and Ursina 3D scene',
+      'Solar-system visualization focus',
+      'Interactive astronomy learning surface',
+    ],
     category: 'Simulation',
   },
   {
@@ -173,6 +214,45 @@ export const projects: Project[] = [
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'reaper',
+    projectName: 'reaper',
+    kicker: 'AI security automation',
+    summary:
+      'An AI-powered black-box penetration testing prototype that routes an agent through an MCP server with specialized tools for authorized OWASP-style web application assessments.',
+    repoUrl: 'https://github.com/ctclostio/reaper',
+    role: 'Solo builder: agent workflow, MCP tool surface, scan phases, CLI usage, and report format.',
+    stack: ['Python', 'MCP', 'Claude Code', 'OWASP Top 10', 'Markdown reporting'],
+    proofPoints: [
+      'Four scan phases: reconnaissance, analysis, exploitation, and reporting.',
+      '11 MCP tools cover HTTP requests, crawling, headers, cookies, CORS, methods, TLS, payload tests, fuzzing, payload loading, and finding recording.',
+      'Reports include severity summaries, evidence, curl reproduction steps, remediation advice, attack-surface notes, and methodology.',
+    ],
+    problem:
+      'Security automation is only useful when it respects scope, produces evidence, and separates possible issues from confirmed findings. Reaper explores that workflow for applications the tester owns or is explicitly authorized to assess.',
+    approach: [
+      'Use an AI agent for reasoning and test selection while keeping HTTP, crawling, payload, and reporting actions behind a purpose-built MCP server.',
+      'Structure the scan around a four-phase methodology so reconnaissance, analysis, exploitation, and reporting are explicit rather than ad hoc.',
+      'Constrain execution with options for allowed scope, request budget, timeout, output directory, and model selection.',
+      'Report confirmed vulnerabilities with reproduction steps and remediation advice instead of raw scan noise.',
+    ],
+    implementation: [
+      'Python CLI entry point accepts a target URL and scan options such as `--scope`, `--max-requests`, `--timeout`, `--output`, and `--model`.',
+      'The MCP server exposes specialized tools for inspecting attack surface, security headers, cookie flags, CORS, dangerous HTTP methods, TLS, and payload behavior.',
+      'Curated payload lists support categories such as SQL injection, XSS, SSTI, traversal, and SSRF.',
+      'Findings are recorded with evidence and exported to markdown reports suitable for review.',
+    ],
+    outcomes: [
+      'A concrete AI-agent architecture for authorized black-box web application testing.',
+      'A clearer separation between agent reasoning, test execution, evidence capture, and final reporting.',
+      'A useful security portfolio piece because it demonstrates AI tooling, MCP integration, web security workflows, and operational guardrails.',
+    ],
+    nextSteps: [
+      'Add a sanitized demo report from a deliberately vulnerable local app.',
+      'Capture a short terminal run-through for the portfolio.',
+      'Add CI-safe fixtures for tool behavior without scanning third-party systems.',
+    ],
+  },
+  {
     slug: 'smoldungeon',
     projectName: 'SmolDungeon',
     kicker: 'AI-assisted terminal game architecture',
@@ -181,6 +261,11 @@ export const caseStudies: CaseStudy[] = [
     repoUrl: 'https://github.com/ctclostio/SmolDungeon',
     role: 'Solo builder: gameplay loop, Go workspace, CLI UX, scenario format, persistence direction, and AI integration surface.',
     stack: ['Go', 'CLI', 'YAML scenarios', 'Fiber', 'SQLite', 'OpenAI-compatible LLM APIs'],
+    proofPoints: [
+      'Terminal-first game loop with scenario discovery, run start, continuation, and save listing.',
+      'Go workspace separates CLI, DM/server infrastructure, and shared scenario data.',
+      'State direction uses immutable events and snapshots so sessions can be reconstructed.',
+    ],
     problem:
       'Most LLM game prototypes lean on a browser shell or fragile one-shot prompts. SmolDungeon explores a more durable shape: a fast terminal-native tactics loop where scenarios, saves, and state transitions are explicit enough to test, continue, and evolve.',
     approach: [
@@ -216,6 +301,11 @@ export const caseStudies: CaseStudy[] = [
     repoUrl: 'https://github.com/ctclostio/GoStarMap',
     role: 'Solo builder: renderer, orbital package, galaxy generation, controls, HUD targeting, shader lighting, and performance strategy.',
     stack: ['Go', 'raylib-go', 'GLSL shaders', 'Kepler solver', 'JPL Horizons data', 'Procedural generation'],
+    proofPoints: [
+      'Real-time scene includes the Sun, planets, nearby stars, and a procedural Milky Way.',
+      'Pure-Go orbital helpers keep math testable outside a graphics context.',
+      'Rendering strategy includes LOD bands, distance culling, cached meshes, and reduced shader uniform churn.',
+    ],
     problem:
       'Astronomy demos often choose between visual spectacle and inspectable simulation. GoStarMap aims for both: a fast first-person 3D environment that is fun to fly through while still grounding planet positions in Keplerian mechanics and real orbital elements.',
     approach: [
