@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "check": "tsc -b",
     "test:a11y": "playwright test",
     "test:lighthouse": "node scripts/run-lighthouse.mjs",
-    "quality": "npm run check && npm run build && npm run test:a11y && npm run test:lighthouse"
+    "quality": "npm run check && npm run build && npm run test:a11y && npm run test:lighthouse",
+    "new:post": "node scripts/new-post.mjs",
+    "test:content": "node --test tests/content.test.mjs",
+    "prebuild": "npm run test:content"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
@@ -24,6 +27,8 @@
     "@playwright/test": "^1.60.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "lighthouse": "^13.3.0"
+    "lighthouse": "^13.3.0",
+    "markdown-it": "^15.0.1",
+    "yaml": "^2.9.0"
   }
 }

@@ -8,6 +8,19 @@ The project cabinet supports category filters, search, and a random project pick
 Motion follows the visitor's reduced-motion preference. Fonts are served locally;
 their licenses live alongside the files in `public/fonts`.
 
+## The blog
+
+Read the notebook at [ctclostio.github.io/blog](https://ctclostio.github.io/blog/).
+Write posts in Markdown under `content/blog/`; follow [the writing guide](BLOGGING.md)
+for metadata, images, drafts, previewing, and publishing.
+
+```bash
+npm run new:post -- "What I learned today" --project "GoStarMap"
+```
+
+The build creates complete HTML pages, RSS, and a sitemap. Drafts stay out of the
+published site. A small introduction is published; `post-template.md` is a reusable draft.
+
 ## Local development
 
 ```bash
@@ -28,10 +41,12 @@ The GitHub Actions workflow in `.github/workflows/pages.yml` deploys the static 
 ```bash
 npm run check
 npm run build
+npm run test:content
 npm run test:a11y
 npm run test:lighthouse
 ```
 
+Browser tests run against the production build; run `npm run build` first.
 Browser-based checks require Chrome or Chromium. In CI, `.github/workflows/pages.yml` installs Chrome and passes `CHROME_PATH` to Playwright and Lighthouse.
 
 For an existing Chrome installation on Windows (PowerShell):

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import './styles.css';
+import { posts, postUrl, formatPostDate, type BlogPost } from './data/blog';
 import { caseStudies, categories, featuredProjects, projects, type CaseStudy, type Project } from './data/projects';
 
 type Category = (typeof categories)[number];
@@ -404,6 +405,146 @@ function ContactForm() {
   );
 }
 
+function SiteHeader({ blog = false }: { blog?: boolean }) {
+  return (
+    <header className="site-header section-shell">
+      <a className="brand" href="/#main-content">
+        <span className="brand-mark" aria-hidden="true">✳</span>
+        <span>Hannadio<span className="brand-caption">THE WORKSHOP OF CLAYTON CLOSTIO</span></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/#featured">The work</a>
+        <a href="/#about">The human</a>
+        <a href="/#case-studies">Roadmaps</a>
+        <a href="/blog/" aria-current={blog ? 'page' : undefined}>Blog</a>
+        <a className="nav-cta" href={githubUrl} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer section-shell">
+      <span>© {new Date().getFullYear()} Clayton Clostio <span aria-hidden="true">✳</span> Hannadio</span>
+      <span>Made with curiosity. Occasionally, a plan.</span>
+      <div className="footer-links"><a href="/feed.xml">RSS feed</a><a href="#main-content">Back to the top ↑</a></div>
+    </footer>
+  );
+}
+
+function NotebookSketch() {
+  return (
+    <div className="blog-doodle" aria-hidden="true">
+      <svg viewBox="0 0 300 220" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <g transform="rotate(-9 145 110)">
+          <path d="M63 33h150v151H63z" fill="#e9dfc4" />
+          <path d="M80 33h133v151H80z" fill="#fbf8ed" />
+          <path d="M101 64h87m-87 19h87m-87 19h87m-87 19h60m-60 19h39" stroke="#a5b3a2" />
+          <path d="M57 49h16m-16 24h16m-16 24h16m-16 24h16m-16 24h16m-16 24h16" strokeWidth="3" />
+          <path d="M180 142l43-87 12 6-43 87-16 16z" fill="#e4b95e" />
+          <path d="M180 142l12 6m-5-3 42-87M176 164l4-11" />
+        </g>
+        <Star x={249} y={142} size={12} /><Star x={41} y={93} size={8} />
+        <path d="M236 34q20-11 28 1m-4-9 4 9-10 3" />
+      </svg>
+      <span className="handwritten">in progress, on purpose.</span>
+    </div>
+  );
+}
+
+function BlogEntry({ post }: { post: BlogPost }) {
+  return (
+    <article className="notebook-entry">
+      <div className="entry-date"><time dateTime={post.date}>{formatPostDate(post.date)}</time><span>{post.minutes} min read</span></div>
+      <div className="entry-copy">
+        {post.project ? <span className="eyebrow">{post.project}</span> : null}
+        <h3><a href={postUrl(post.slug)}>{post.title}</a></h3>
+        <p>{post.description}</p>
+        <div className="topic-row" aria-label="Post topics">{post.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+      </div>
+      <a className="entry-arrow" href={postUrl(post.slug)} aria-label={`Read ${post.title}`}><span aria-hidden="true">↗</span></a>
+    </article>
+  );
+}
+
+function BlogIndex() {
+  const [search, setSearch] = useState('');
+  const [project, setProject] = useState('All projects');
+  const projectNames = Array.from(new Set(posts.map((post) => post.project).filter((name): name is string => Boolean(name)))).sort();
+  const filtered = posts.filter((post) => (project === 'All projects' || post.project === project) &&
+    [post.title, post.description, post.project, ...post.tags].join(' ').toLowerCase().includes(search.trim().toLowerCase()));
+  return (
+    <>
+      <AnalyticsLoader />
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <SiteHeader blog />
+      <main id="main-content" className="section-shell blog-page">
+        <section className="blog-hero" aria-labelledby="blog-title">
+          <div><span className="eyebrow">Hannadio / The notebook</span><h1 id="blog-title">Notes from<br /><em>the workbench.</em></h1><p>Small discoveries, experiments in progress, and the occasional useful wrong turn. A place for the bits between the milestones.</p><a className="text-link" href="/feed.xml">Follow along with RSS <span aria-hidden="true">↗</span></a></div>
+          <NotebookSketch />
+        </section>
+        <section className="blog-archive" aria-labelledby="archive-title">
+          <div className="blog-controls">
+            <h2 id="archive-title">All the scribbles.</h2>
+            <label className="search-box"><span>Search the notebook</span><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="A project, an idea, a rabbit hole…" /></label>
+            <label className="project-select"><span>Project</span><select value={project} onChange={(event) => setProject(event.target.value)}><option>All projects</option>{projectNames.map((name) => <option key={name}>{name}</option>)}</select></label>
+          </div>
+          <p className="result-count" role="status">{filtered.length} {filtered.length === 1 ? 'entry' : 'entries'} in the notebook</p>
+          <div className="notebook-entries">{filtered.map((post) => <BlogEntry key={post.slug} post={post} />)}</div>
+          {!filtered.length ? <div className="empty-state"><span aria-hidden="true">✳</span><h3>{posts.length ? 'That page is still blank.' : 'A fresh page, waiting for a story.'}</h3><p>{posts.length ? 'Try another search or wander through all the notes.' : 'Notes from the next experiment will land here.'}</p>{posts.length ? <button className="button secondary" onClick={() => { setSearch(''); setProject('All projects'); }}>Show all entries</button> : <a className="button secondary" href="/#projects">Explore the projects</a>}</div> : null}
+        </section>
+        <div className="blog-colophon"><span className="handwritten">More notes as the experiments continue.</span><a className="text-link" href="/#projects">Back to the workbench ↗</a></div>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}
+
+function BlogArticle({ post }: { post: BlogPost }) {
+  const index = posts.findIndex((entry) => entry.slug === post.slug);
+  const newer = posts[index - 1];
+  const older = posts[index + 1];
+  const relatedProject = projects.find((entry) => entry.name === post.project);
+  const projectHref = post.project === 'Portfolio' ? '/#featured' : relatedProject?.url;
+  return (
+    <>
+      <AnalyticsLoader />
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <SiteHeader blog />
+      <main id="main-content" className="section-shell article-page">
+        <a className="text-link article-back" href="/blog/">← Back to the notebook</a>
+        <article>
+          <header className="article-heading">
+            <span className="eyebrow">The notebook{post.project ? ` / ${post.project}` : ''}</span>
+            <h1>{post.title}</h1>
+            <p className="article-description">{post.description}</p>
+            <div className="article-meta"><span>Clayton Clostio</span><span aria-hidden="true">✳</span><time dateTime={post.date}>{formatPostDate(post.date)}</time><span>{post.minutes} min read</span></div>
+            <div className="topic-row" aria-label="Post topics">{post.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+          </header>
+          <div className="article-layout">
+            <div className="article-prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+            <aside className="article-margin" aria-label="Article navigation">
+              {post.headings.length ? <nav aria-label="In this entry"><span className="eyebrow">In this entry</span>{post.headings.map((heading) => <a key={heading.id} href={`#${heading.id}`}>{heading.text}</a>)}</nav> : null}
+              {projectHref ? <a className="text-link" href={projectHref}>Explore {post.project} ↗</a> : null}
+              <span className="handwritten">a note from<br />the workbench.</span>
+            </aside>
+          </div>
+        </article>
+        <nav className="article-pagination" aria-label="More notebook entries">
+          {newer ? <a href={postUrl(newer.slug)}><span className="eyebrow">← Newer note</span>{newer.title}</a> : <a className="text-link" href="/blog/">← All entries</a>}
+          {older ? <a href={postUrl(older.slug)}><span className="eyebrow">Older note →</span>{older.title}</a> : <a className="text-link" href="/feed.xml">Follow the next experiment via RSS ↗</a>}
+        </nav>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}
+
+function MissingPage() {
+  return <><a className="skip-link" href="#main-content">Skip to content</a><SiteHeader /><main id="main-content" className="section-shell missing-page"><span className="eyebrow">404 / An unexpected detour</span><h1>This page<br /><em>wandered off.</em></h1><p>There’s still plenty to explore back at the workshop.</p><a className="button primary" href="/blog/">Back to the notebook ↗</a><a className="text-link" href="/">Visit the portfolio</a></main><SiteFooter /></>;
+}
+
 function App() {
   const [category, setCategory] = useState<Category>('All');
   const [query, setQuery] = useState('');
@@ -437,18 +578,7 @@ function App() {
     <>
       <AnalyticsLoader />
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <header className="site-header section-shell">
-        <a className="brand" href="#main-content">
-          <span className="brand-mark" aria-hidden="true">✳</span>
-          <span>Hannadio<span className="brand-caption">THE WORKSHOP OF CLAYTON CLOSTIO</span></span>
-        </a>
-        <nav aria-label="Primary navigation">
-          <a href="#featured">The work</a>
-          <a href="#about">The human</a>
-          <a href="#case-studies">Field notes</a>
-          <a className="nav-cta" href={githubUrl} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main id="main-content">
         <section className="hero section-shell" aria-labelledby="hero-title">
@@ -537,9 +667,18 @@ function App() {
           ) : null}
         </section>
 
+        <section className="section-shell home-blog-section" aria-labelledby="home-blog-title">
+          <div className="section-heading row-heading">
+            <div><span className="eyebrow">05 / The notebook</span><h2 id="home-blog-title">The bits between the milestones.</h2></div>
+            <a className="text-link" href="/blog/">Visit the blog <span aria-hidden="true">↗</span></a>
+          </div>
+          <p className="blog-introduction">Small discoveries, experiments in progress, and the occasional useful wrong turn.</p>
+          {posts.length ? <div className="notebook-entries">{posts.slice(0, 2).map((post) => <BlogEntry key={post.slug} post={post} />)}</div> : <p className="handwritten">A fresh page. The next experiment starts here.</p>}
+        </section>
+
         <section className="section-shell cta-panel" id="contact">
           <div>
-            <span className="eyebrow">05 / Leave a little room for the unexpected</span>
+            <span className="eyebrow">06 / Leave a little room for the unexpected</span>
             <h2>Got a curious idea?<br /><em>Pull up a chair.</em></h2>
             <p>A strange simulation, a useful little tool, a game that probably shouldn’t run in a terminal. I’d love to see what you’re working on.</p>
           </div>
@@ -547,13 +686,25 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer section-shell">
-        <span>© {new Date().getFullYear()} Clayton Clostio <span aria-hidden="true">✳</span> Hannadio</span>
-        <span>Made with curiosity. Occasionally, a plan.</span>
-        <a href="#main-content">Back to the top ↑</a>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
 
-createRoot(document.getElementById('root')!).render(<App />);
+export function Page({ pathname }: { pathname: string }) {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  if (path === '/blog') return <BlogIndex />;
+  if (path.startsWith('/blog/')) {
+    const post = posts.find((entry) => postUrl(entry.slug).replace(/\/$/, '') === path);
+    return post ? <BlogArticle post={post} /> : <MissingPage />;
+  }
+  if (path === '/' || path === '/index.html') return <App />;
+  return <MissingPage />;
+}
+
+if (!import.meta.env.SSR) {
+  const root = document.getElementById('root')!;
+  const page = <Page pathname={window.location.pathname} />;
+  if (root.hasChildNodes()) hydrateRoot(root, page);
+  else createRoot(root).render(page);
+}
