@@ -35,7 +35,7 @@ export type CaseStudy = {
 export const projects: Project[] = [
   {
     name: 'reaper',
-    description: 'AI-powered black-box penetration testing tool focused on OWASP-style security workflows.',
+    description: 'An AI security assistant that pokes at web apps you own, follows the evidence, and writes up what needs fixing.',
     url: 'https://github.com/ctclostio/reaper',
     language: 'Python',
     topics: ['ai', 'claude', 'mcp', 'owasp', 'pentesting', 'python', 'security'],
@@ -54,7 +54,7 @@ export const projects: Project[] = [
   },
   {
     name: 'MojaveAdventure',
-    description: 'Terminal Fallout RPG with a local-LLM-powered AI Dungeon Master, written in Rust.',
+    description: 'A little wasteland in your terminal. A local AI calls the adventure; Rust keeps the Fallout-inspired world running.',
     url: 'https://github.com/ctclostio/MojaveAdventure',
     language: 'Rust',
     topics: ['ai', 'fallout', 'game', 'llm', 'rpg', 'rust', 'terminal'],
@@ -72,7 +72,7 @@ export const projects: Project[] = [
   },
   {
     name: 'SmolDungeon',
-    description: 'Local-first tactical dungeon crawler with a Go CLI, YAML scenarios, SQLite-backed DM infrastructure, and optional LLM narration/enemy actions.',
+    description: 'A dungeon in your terminal, with tactical encounters, saved adventures, and an optional AI narrator. Bring your own questionable decisions.',
     url: 'https://github.com/ctclostio/SmolDungeon',
     language: 'Go',
     topics: ['ai', 'dungeon-crawler', 'game', 'go', 'llm'],
@@ -91,7 +91,7 @@ export const projects: Project[] = [
   },
   {
     name: 'GoStarMap',
-    description: 'Real-time 3D solar system and procedural-galaxy simulator in Go with raylib, custom shaders, and Keplerian orbital mechanics.',
+    description: 'Take the scenic route through the solar system. Real orbital mechanics, a procedural galaxy, and a very good excuse to learn shaders in Go.',
     url: 'https://github.com/ctclostio/GoStarMap',
     language: 'Go',
     topics: ['3d', 'astronomy', 'go', 'visualization'],
@@ -110,7 +110,7 @@ export const projects: Project[] = [
   },
   {
     name: 'ReaderTTS',
-    description: 'VibeVoice-based TTS pipeline tuned to clone the voice of Kratos / Christopher Judge.',
+    description: 'An experiment in giving text a voice: a local VibeVoice pipeline exploring speech synthesis and voice cloning in Python.',
     url: 'https://github.com/ctclostio/ReaderTTS',
     language: 'Python',
     topics: ['ai', 'python', 'tts', 'vibevoice', 'voice-cloning'],
@@ -128,7 +128,7 @@ export const projects: Project[] = [
   },
   {
     name: 'SpaceSimulationPython',
-    description: '3D solar system simulation built with Python and Ursina.',
+    description: 'A solar system you can wander around, built with Python and Ursina. Because a diagram only gets you so far.',
     url: 'https://github.com/ctclostio/SpaceSimulationPython',
     language: 'Python',
     topics: ['3d', 'astronomy', 'python', 'simulation', 'ursina'],
@@ -146,7 +146,7 @@ export const projects: Project[] = [
   },
   {
     name: 'pdf-splitter',
-    description: 'Split PDFs into size-based chunks and compress them into ZIP files.',
+    description: 'For when a PDF is bigger than the upload limit. Split it into manageable pieces and bundle them into ZIP files.',
     url: 'https://github.com/ctclostio/pdf-splitter',
     language: 'Python',
     topics: ['cli', 'compression', 'pdf', 'python'],
@@ -157,7 +157,7 @@ export const projects: Project[] = [
   },
   {
     name: 'whiteMonster',
-    description: 'Lightweight PowerShell mouse jiggler that prevents idle timeouts and sleep mode.',
+    description: 'A tiny PowerShell mouse jiggler that keeps Windows awake. Small script, appropriately overdramatic name.',
     url: 'https://github.com/ctclostio/whiteMonster',
     language: 'PowerShell',
     topics: ['mouse-jiggler', 'powershell', 'utility', 'windows'],
@@ -168,7 +168,7 @@ export const projects: Project[] = [
   },
   {
     name: 'baseball-stats-app',
-    description: 'Modern web application for tracking and analyzing baseball statistics.',
+    description: 'A place to dig into baseball statistics, track the numbers, and spend a little more time thinking about the game.',
     url: 'https://github.com/ctclostio/baseball-stats-app',
     language: 'Web',
     topics: ['baseball', 'stats', 'web'],
@@ -179,7 +179,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Internal-OCR-Tool',
-    description: 'Document OCR application that turns physical documents and images into searchable digital formats.',
+    description: 'Give a stack of scanned documents the ability to answer a search. Python OCR tooling for turning images into usable text.',
     url: 'https://github.com/ctclostio/Internal-OCR-Tool',
     language: 'Python',
     topics: ['document-processing', 'ocr', 'python'],
@@ -190,7 +190,7 @@ export const projects: Project[] = [
   },
   {
     name: 'PythonPlayground',
-    description: 'Self-hosted portfolio of mini Python projects.',
+    description: 'A home for small Python experiments. Little ideas, working code, and room to figure things out.',
     url: 'https://github.com/ctclostio/PythonPlayground',
     language: 'Python',
     topics: ['flask', 'portfolio', 'python'],
@@ -201,7 +201,7 @@ export const projects: Project[] = [
   },
   {
     name: 'GameJAM',
-    description: 'Weekly game-jam experiments and prototypes built while practicing game design.',
+    description: 'Small games made on a short clock. A collection of weekly experiments in figuring out what makes something fun.',
     url: 'https://github.com/ctclostio/GameJAM',
     language: 'Game Maker Language',
     topics: ['game-jam', 'gamemaker', 'games'],
@@ -218,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
     projectName: 'reaper',
     kicker: 'AI security automation',
     summary:
-      'An AI-powered black-box penetration testing prototype that routes an agent through an MCP server with specialized tools for authorized OWASP-style web application assessments.',
+      'How an AI agent, 11 purpose-built tools, and an evidence-first workflow fit together for authorized web security testing.',
     repoUrl: 'https://github.com/ctclostio/reaper',
     role: 'Solo builder: agent workflow, MCP tool surface, scan phases, CLI usage, and report format.',
     stack: ['Python', 'MCP', 'Claude Code', 'OWASP Top 10', 'Markdown reporting'],
@@ -257,7 +257,7 @@ export const caseStudies: CaseStudy[] = [
     projectName: 'SmolDungeon',
     kicker: 'AI-assisted terminal game architecture',
     summary:
-      'A local-first tactical dungeon crawler that keeps the primary experience in the terminal while preserving room for a Go/Fiber Dungeon Master service, persistent game state, and optional LLM-driven narration.',
+      'Building a terminal dungeon that remembers what happened: deterministic game state, saved sessions, and a place for an AI narrator.',
     repoUrl: 'https://github.com/ctclostio/SmolDungeon',
     role: 'Solo builder: gameplay loop, Go workspace, CLI UX, scenario format, persistence direction, and AI integration surface.',
     stack: ['Go', 'CLI', 'YAML scenarios', 'Fiber', 'SQLite', 'OpenAI-compatible LLM APIs'],
@@ -297,7 +297,7 @@ export const caseStudies: CaseStudy[] = [
     projectName: 'GoStarMap',
     kicker: 'Real-time astronomy visualization',
     summary:
-      'A Go/raylib 3D space simulator that combines a navigable solar system, real JPL orbital elements, custom GLSL planet lighting, and a procedural 100,000-star Milky Way.',
+      'From orbital equations to a flyable galaxy: the math, shaders, and performance decisions behind a little universe in Go.',
     repoUrl: 'https://github.com/ctclostio/GoStarMap',
     role: 'Solo builder: renderer, orbital package, galaxy generation, controls, HUD targeting, shader lighting, and performance strategy.',
     stack: ['Go', 'raylib-go', 'GLSL shaders', 'Kepler solver', 'JPL Horizons data', 'Procedural generation'],

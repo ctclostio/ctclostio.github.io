@@ -1,37 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Clayton Clostio portfolio preview</title>
-  <desc id="desc">Social preview for a portfolio of AI tools, games, simulations, and developer utilities.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#08090a"/>
-      <stop offset="0.55" stop-color="#11131f"/>
-      <stop offset="1" stop-color="#07150f"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#828fff"/>
-      <stop offset="1" stop-color="#10b981"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="985" cy="112" r="220" fill="#7170ff" opacity="0.18"/>
-  <circle cx="154" cy="548" r="260" fill="#10b981" opacity="0.12"/>
-  <rect x="72" y="74" width="1056" height="482" rx="34" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.13)"/>
-  <rect x="112" y="116" width="86" height="86" rx="43" fill="url(#accent)"/>
-  <text x="155" y="171" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">HC</text>
-  <text x="112" y="272" fill="#f7f8f8" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="-3">
-    Clayton Clostio
-  </text>
-  <text x="112" y="344" fill="#d0d6e0" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="500" letter-spacing="-1.2">
-    AI tools, games, simulations, and utilities.
-  </text>
-  <g fill="none" stroke="url(#accent)" stroke-width="4" opacity="0.9">
-    <path d="M120 430h162"/>
-    <path d="M315 430h112"/>
-    <path d="M460 430h142"/>
-  </g>
-  <g font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600">
-    <text x="112" y="494" fill="#828fff">Case studies</text>
-    <text x="310" y="494" fill="#10b981">Public repos</text>
-    <text x="510" y="494" fill="#f7f8f8">Practical software</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#bac4b8" stroke-opacity=".25"/></pattern></defs>
+  <rect width="1200" height="630" fill="#f7f4eb"/>
+  <g fill="#293c4b"><text x="72" y="78" font-family="Georgia,serif" font-size="32">✳ Hannadio</text><text x="72" y="130" font-family="sans-serif" font-size="12" letter-spacing="3">THE WORKSHOP OF CLAYTON CLOSTIO</text></g>
+  <path d="M72 159h1056" stroke="#cfcfc0"/>
+  <g font-family="Georgia,serif" font-size="76" fill="#293c4b"><text x="72" y="272">Serious curiosity.</text><text x="72" y="355" fill="#8c4730">Odd little</text><text x="72" y="438">creations.</text></g>
+  <path d="M74 366q126-9 263-2" fill="none" stroke="#8c4730"/>
+  <text x="72" y="518" font-family="sans-serif" font-size="19" fill="#616557">Tiny universes. Terminal adventures. Useful little tools.</text>
+  <g transform="translate(737 190) rotate(3 175 170)"><rect width="385" height="360" rx="5" fill="#eceddf" stroke="#c6cbbd"/><rect width="385" height="360" fill="url(#grid)"/><rect x="141" y="-12" width="103" height="27" fill="#e3d3a8" fill-opacity=".8"/>
+  <g fill="none" stroke="#293c4b" stroke-width="1.8"><ellipse cx="193" cy="171" rx="155" ry="103" transform="rotate(-23 193 171)"/><ellipse cx="193" cy="171" rx="105" ry="65" transform="rotate(-23 193 171)" stroke-dasharray="4 5"/><circle cx="193" cy="171" r="35" fill="#e9b75c"/><ellipse cx="193" cy="171" rx="16" ry="35"/><path d="M158 171h70M162 155q31-9 62 0M162 187q31 9 62 0"/><circle cx="300" cy="73" r="20" fill="#c4c7e2"/><ellipse cx="300" cy="73" rx="30" ry="7" transform="rotate(-25 300 73)"/><circle cx="92" cy="190" r="12" fill="#b8c69c"/><path d="M62 60v18m-9-9h18M318 249v16m-8-8h16"/></g>
+  <text x="193" y="321" fill="#293c4b" font-family="Georgia,serif" font-size="17" font-style="italic" text-anchor="middle">Side quests welcome.</text></g>
 </svg>
