@@ -410,7 +410,7 @@ function SiteHeader({ blog = false }: { blog?: boolean }) {
     <header className="site-header section-shell">
       <a className="brand" href="/#main-content">
         <span className="brand-mark" aria-hidden="true">✳</span>
-        <span>Hannadio<span className="brand-caption">THE WORKSHOP OF CLAYTON CLOSTIO</span></span>
+        <span>Hannadio’s Forge<span className="brand-caption">THE WORKSHOP OF CLAYTON CLOSTIO</span></span>
       </a>
       <nav aria-label="Primary navigation">
         <a href="/#featured">The work</a>
