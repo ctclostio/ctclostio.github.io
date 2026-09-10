@@ -236,7 +236,7 @@ h1 em::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 97
   .nav-cta { padding: 8px 13px; }
   .hero { padding-top: 34px; gap: 43px; }
   .hero-eyebrow { font-size: 7px; letter-spacing: .8px; gap: 7px; }
-  h1 { font-size: clamp(47px, 12vw, 64px); letter-spacing: -2.5px; margin-top: 22px; }
+  h1 { font-size: clamp(36px, 12vw, 64px); letter-spacing: -2.5px; margin-top: 22px; }
   .hero__copy > p { font-size: 14px; }
   .hero__copy > .hero-aside { font-size: 11px; }
   .hero__actions { gap: 15px; }

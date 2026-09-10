@@ -584,7 +584,7 @@ function App() {
         <section className="hero section-shell" aria-labelledby="hero-title">
           <div className="hero__copy">
             <div className="eyebrow hero-eyebrow"><span className="little-spark" aria-hidden="true">✳</span> A small corner of the internet, made by hand</div>
-            <h1 id="hero-title">Serious curiosity.<br /><em>Odd little</em><br />creations.</h1>
+            <h1 id="hero-title">Serious curiosity -<br /><em>Odd little</em><br />creations.</h1>
             <p>I’m Clayton. I build tiny universes, send adventurers into dungeons, and write tools for the things I’d rather not do twice.</p>
             <p className="hero-aside">Sometimes in that order. Usually in Go, Python, or Rust.</p>
             <div className="hero__actions">
@@ -609,7 +609,7 @@ function App() {
           <div className="featured-grid">
             {selectedProjects.map((project) => <ProjectCard key={project.name} project={project} />)}
           </div>
-          <p className="handwritten shelf-note">a little space, a little adventure, a healthy dose of “what if?”</p>
+          <p className="handwritten shelf-note">a little whimsy, a healthy dose of “why not”</p>
         </section>
 
         <section className="section-shell about-section" id="about">
