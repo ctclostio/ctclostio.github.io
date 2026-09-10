@@ -23,3 +23,10 @@ Before doing anything else:
 - Always run `npm run check` before committing
 - Always run `npm run build` before pushing
 - Push to `main` triggers auto-deploy via GitHub Pages
+
+## AI-assisted blog writing
+
+Before drafting, rewriting, or proposing a blog post (including its title and
+description), read and follow `content/AGENTS.md`. That file defines the blog's
+voice. `BLOGGING.md` covers the mechanics of creating and publishing posts.
+Keep writing instructions out of published post content and site assets.
