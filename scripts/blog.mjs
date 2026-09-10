@@ -31,6 +31,10 @@ export function parsePost(source, filename) {
   const body = match[2].trim();
   if (!body && !data.draft) fail('A published post needs some content.');
   const markdown = new MarkdownIt({ html: false, linkify: true, typographer: true });
+  for (const rule of ['fence', 'code_block']) {
+    const render = markdown.renderer.rules[rule];
+    markdown.renderer.rules[rule] = (...args) => render(...args).replace('<pre>', '<pre tabindex="0" role="region" aria-label="Code example">');
+  }
   const headings = [];
   const usedIds = new Map();
   const tokens = markdown.parse(body, {});

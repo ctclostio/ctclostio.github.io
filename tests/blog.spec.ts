@@ -83,6 +83,22 @@ for (const width of [390, 1280]) {
   });
 }
 
+test('long code examples can be scrolled with the keyboard', async ({ page }) => {
+  const post = published.find((entry: { html: string }) => entry.html.includes('<pre'));
+  test.skip(!post, 'No published code examples yet.');
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto(`/blog/${post.slug}/`);
+  const examples = page.getByRole('region', { name: 'Code example' });
+  for (const example of await examples.all()) {
+    if (await example.evaluate((element) => element.scrollWidth > element.clientWidth)) {
+      await example.focus();
+      await expect(example).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect.poll(() => example.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+    }
+  }
+});
+
 test.describe('static reading', () => {
   test.use({ javaScriptEnabled: false });
   test('published articles and archive navigation work without JavaScript', async ({ page }) => {
