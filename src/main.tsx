@@ -64,6 +64,14 @@ function languageClass(language?: string) {
   return `language-dot ${language?.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'unknown'}`;
 }
 
+function ForgeMark() {
+  return (
+    <svg className="forge-mark" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M19 17Q12 24 6 32q7 7 13 12M46 18q6 7 12 14-7 8-13 14M38 10q-6 23-12 44" />
+    </svg>
+  );
+}
+
 function Star({ x, y, size = 9 }: { x: number; y: number; size?: number }) {
   return <path d={`M ${x - size} ${y} Q ${x} ${y} ${x} ${y - size} Q ${x} ${y} ${x + size} ${y} Q ${x} ${y} ${x} ${y + size} Q ${x} ${y} ${x - size} ${y}`} />;
 }
@@ -74,7 +82,7 @@ function OrbitNotebook() {
 
   return (
     <figure className="orbit-notebook">
-      <div className="notebook-label"><span>Fig. 01 — A wandering mind</span><span aria-hidden="true">✳</span></div>
+      <div className="notebook-label"><span>Fig. 01 — A wandering mind</span><span aria-hidden="true"><ForgeMark /></span></div>
       <svg className="orbit-drawing" viewBox="0 0 540 420" role="img" aria-label="An illustrated solar system with three planets. Use the nudge button to move them along their orbits.">
         <g fill="none" stroke="currentColor" strokeWidth="1.5">
           <ellipse cx="270" cy="206" rx="97" ry="55" transform="rotate(-22 270 206)" />
@@ -409,7 +417,7 @@ function SiteHeader({ blog = false }: { blog?: boolean }) {
   return (
     <header className="site-header section-shell">
       <a className="brand" href="/#main-content">
-        <span className="brand-mark" aria-hidden="true">✳</span>
+        <span className="brand-mark" aria-hidden="true"><ForgeMark /></span>
         <span>Hannadio’s Forge<span className="brand-caption">THE WORKSHOP OF CLAYTON CLOSTIO</span></span>
       </a>
       <nav aria-label="Primary navigation">
@@ -426,7 +434,7 @@ function SiteHeader({ blog = false }: { blog?: boolean }) {
 function SiteFooter() {
   return (
     <footer className="site-footer section-shell">
-      <span>© {new Date().getFullYear()} Clayton Clostio <span aria-hidden="true">✳</span> Hannadio</span>
+      <span>© {new Date().getFullYear()} Clayton Clostio <span aria-hidden="true"><ForgeMark /></span> Hannadio</span>
       <span>Made with curiosity. Occasionally, a plan.</span>
       <div className="footer-links"><a href="/feed.xml">RSS feed</a><a href="#main-content">Back to the top ↑</a></div>
     </footer>
@@ -492,7 +500,7 @@ function BlogIndex() {
           </div>
           <p className="result-count" role="status">{filtered.length} {filtered.length === 1 ? 'entry' : 'entries'} in the notebook</p>
           <div className="notebook-entries">{filtered.map((post) => <BlogEntry key={post.slug} post={post} />)}</div>
-          {!filtered.length ? <div className="empty-state"><span aria-hidden="true">✳</span><h3>{posts.length ? 'That page is still blank.' : 'A fresh page, waiting for a story.'}</h3><p>{posts.length ? 'Try another search or wander through all the notes.' : 'Notes from the next experiment will land here.'}</p>{posts.length ? <button className="button secondary" onClick={() => { setSearch(''); setProject('All projects'); }}>Show all entries</button> : <a className="button secondary" href="/#projects">Explore the projects</a>}</div> : null}
+          {!filtered.length ? <div className="empty-state"><span aria-hidden="true"><ForgeMark /></span><h3>{posts.length ? 'That page is still blank.' : 'A fresh page, waiting for a story.'}</h3><p>{posts.length ? 'Try another search or wander through all the notes.' : 'Notes from the next experiment will land here.'}</p>{posts.length ? <button className="button secondary" onClick={() => { setSearch(''); setProject('All projects'); }}>Show all entries</button> : <a className="button secondary" href="/#projects">Explore the projects</a>}</div> : null}
         </section>
         <div className="blog-colophon"><span className="handwritten">More notes as the experiments continue.</span><a className="text-link" href="/#projects">Back to the workbench ↗</a></div>
       </main>
@@ -519,7 +527,7 @@ function BlogArticle({ post }: { post: BlogPost }) {
             <span className="eyebrow">The notebook{post.project ? ` / ${post.project}` : ''}</span>
             <h1>{post.title}</h1>
             <p className="article-description">{post.description}</p>
-            <div className="article-meta"><span>Clayton Clostio</span><span aria-hidden="true">✳</span><time dateTime={post.date}>{formatPostDate(post.date)}</time><span>{post.minutes} min read</span></div>
+            <div className="article-meta"><span>Clayton Clostio</span><span aria-hidden="true"><ForgeMark /></span><time dateTime={post.date}>{formatPostDate(post.date)}</time><span>{post.minutes} min read</span></div>
             <div className="topic-row" aria-label="Post topics">{post.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
           </header>
           <div className="article-layout">
@@ -583,7 +591,7 @@ function App() {
       <main id="main-content">
         <section className="hero section-shell" aria-labelledby="hero-title">
           <div className="hero__copy">
-            <div className="eyebrow hero-eyebrow"><span className="little-spark" aria-hidden="true">✳</span> A small corner of the internet, made by hand</div>
+            <div className="eyebrow hero-eyebrow"><span className="little-spark" aria-hidden="true"><ForgeMark /></span> A small corner of the internet, made by hand</div>
             <h1 id="hero-title">Serious curiosity -<br /><em>Odd little</em><br />creations.</h1>
             <p>I’m Clayton. I build tiny universes, send adventurers into dungeons, and write tools for the things I’d rather not do twice.</p>
             <p className="hero-aside">Sometimes in that order. Usually in Go, Python, or Rust.</p>

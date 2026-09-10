@@ -35,7 +35,8 @@ svg { display: block; max-width: 100%; }
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 110px; border-bottom: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 12px; font-family: 'Fraunces', Georgia, serif; font-size: 29px; letter-spacing: -1px; }
 .brand:hover { text-decoration: none; }
-.brand-mark { font-family: Georgia, serif; font-size: 52px; color: var(--accent); line-height: 1; }
+.brand-mark { display: flex; font-size: 45px; color: var(--accent); line-height: 1; }
+.forge-mark { display: inline-block; width: 1em; height: 1em; vertical-align: -.15em; flex-shrink: 0; }
 .brand-caption { display: block; margin-top: 5px; font: 8px 'DM Sans', sans-serif; letter-spacing: 1.35px; }
 .site-header nav { display: flex; align-items: center; gap: 30px; font-size: 13px; }
 .nav-cta { padding: 10px 18px; border: 1px solid var(--ink); border-radius: 4px; }

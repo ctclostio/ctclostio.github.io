@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#bac4b8" stroke-opacity=".25"/></pattern></defs>
   <rect width="1200" height="630" fill="#f7f4eb"/>
-  <g fill="#293c4b"><text x="72" y="78" font-family="Georgia,serif" font-size="32">✳ Hannadio</text><text x="72" y="130" font-family="sans-serif" font-size="12" letter-spacing="3">THE WORKSHOP OF CLAYTON CLOSTIO</text></g>
+  <g transform="translate(70 43) scale(.65)" fill="none" stroke="#8c4730" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17Q12 24 6 32q7 7 13 12M46 18q6 7 12 14-7 8-13 14M38 10q-6 23-12 44"/></g>
+  <g fill="#293c4b"><text x="122" y="78" font-family="Georgia,serif" font-size="32">Hannadio’s Forge</text><text x="72" y="130" font-family="sans-serif" font-size="12" letter-spacing="3">THE WORKSHOP OF CLAYTON CLOSTIO</text></g>
   <path d="M72 159h1056" stroke="#cfcfc0"/>
-  <g font-family="Georgia,serif" font-size="76" fill="#293c4b"><text x="72" y="272">Serious curiosity.</text><text x="72" y="355" fill="#8c4730">Odd little</text><text x="72" y="438">creations.</text></g>
+  <g font-family="Georgia,serif" font-size="76" fill="#293c4b"><text x="72" y="272">Serious curiosity -</text><text x="72" y="355" fill="#8c4730">Odd little</text><text x="72" y="438">creations.</text></g>
   <path d="M74 366q126-9 263-2" fill="none" stroke="#8c4730"/>
   <text x="72" y="518" font-family="sans-serif" font-size="19" fill="#616557">Tiny universes. Terminal adventures. Useful little tools.</text>
   <g transform="translate(737 190) rotate(3 175 170)"><rect width="385" height="360" rx="5" fill="#eceddf" stroke="#c6cbbd"/><rect width="385" height="360" fill="url(#grid)"/><rect x="141" y="-12" width="103" height="27" fill="#e3d3a8" fill-opacity=".8"/>
